@@ -28,6 +28,13 @@
 			</div>
 
 			<div class="mt-5">
+				<label for="username" class="block text-sm font-medium leading-5 text-gray-700">PTCGO Name</label>
+				<div class="mt-1 rounded-md shadow-sm">
+					<input id="username" type="text" name="username" placeholder="PTCGO Name" value="{{ Auth::user()->username }}" required class="w-full form-input">
+				</div>
+			</div>
+
+			<div class="mt-5">
 				<label for="about" class="block text-sm font-medium leading-5 text-gray-700">About</label>
 				<div class="mt-1 rounded-md">
 					{!! profile_field('text_area', 'about') !!}

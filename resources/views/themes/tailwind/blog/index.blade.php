@@ -10,10 +10,10 @@
     <div class="relative mx-auto max-w-7xl">
 		<div class="flex flex-col justify-start">
 			<h1 class="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
-				Our Awesome Blog
+				Unformer Blog
 			</h1>
 			<p class="mt-3 text-xl leading-7 text-gray-500 sm:mt-4">
-				Check out some of our latest blog posts below.
+				All about Unformer
 			</p>
 			<ul class="flex self-start inline w-auto px-3 py-1 mt-3 text-xs font-medium text-gray-600 bg-blue-100 rounded-md">
 				<li class="mr-4 font-bold text-blue-600 uppercase">Categories:</li>

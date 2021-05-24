@@ -5,7 +5,7 @@
     @if(isset($seo->title))
         <title>{{ $seo->title }}</title>
     @else
-        <title>{{ setting('site.title', 'Laravel Wave') . ' - ' . setting('site.description', 'The Software as a Service Starter Kit built on Laravel & Voyager') }}</title>
+        <title>{{ setting('site.title', 'Unformer') . ' - ' . setting('site.description', 'The place people play the Pokemon Trading Card Game Online with PTCGO') }}</title>
     @endif
 
     <meta charset="utf-8">
@@ -44,6 +44,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('themes/' . $theme->folder . '/css/app.css') }}" rel="stylesheet">
+
+    @livewireStyles
 </head>
 <body class="flex flex-col min-h-screen @if(Request::is('/')){{ 'bg-white' }}@else{{ 'bg-gray-50' }}@endif @if(config('wave.dev_bar')){{ 'pb-10' }}@endif">
 
@@ -81,6 +83,8 @@
         <script>setTimeout(function(){ popToast("{{ session('message_type') }}", "{{ session('message') }}"); }, 10);</script>
     @endif
     @waveCheckout
+
+    @livewireScripts
 
 </body>
 </html>

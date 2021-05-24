@@ -52,7 +52,7 @@
                     @if(setting('auth.username_in_registration') && setting('auth.username_in_registration') == 'yes')
                         <div class="mt-6">
                             <label for="username" class="block text-sm font-medium leading-5 text-gray-700">
-                                Username
+                                PTCGO Username
                             </label>
                             <div class="mt-1 rounded-md shadow-sm">
                                 <input id="username" type="text" name="username" value="{{ old('username') }}" required class="w-full form-input">

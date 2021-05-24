@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "84ac39710f5feb13e859cab93cfb2601",
+    "content-hash": "2a7ae6538ad5230ee6ecdf6fc1b8ff6f",
     "packages": [
         {
             "name": "arrilot/laravel-widgets",
@@ -649,6 +649,52 @@
                 "source": "https://github.com/thedevdojo/themes/tree/0.0.5"
             },
             "time": "2021-04-04T19:26:29+00:00"
+        },
+        {
+            "name": "diegobanos/php-glicko2",
+            "version": "1.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/diegobanos/php-glicko2.git",
+                "reference": "4a76df90fd90058e6756af9329cb0af2dbc71445"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/diegobanos/php-glicko2/zipball/4a76df90fd90058e6756af9329cb0af2dbc71445",
+                "reference": "4a76df90fd90058e6756af9329cb0af2dbc71445",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Diegobanos\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Diego Banos",
+                    "email": "diegobanosfarinas@gmail.com"
+                }
+            ],
+            "description": "A PHP glicko2 implementation with an easy to use interface",
+            "keywords": [
+                "Rating",
+                "glicko",
+                "glicko2",
+                "ranking"
+            ],
+            "support": {
+                "issues": "https://github.com/diegobanos/php-glicko2/issues",
+                "source": "https://github.com/diegobanos/php-glicko2/tree/1.4.2"
+            },
+            "time": "2019-07-29T11:04:08+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2815,16 +2861,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v2.4.2",
+            "version": "v2.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "2495387841a3eb03ac62b2c984ccd2574303285b"
+                "reference": "33101c83b75728651b9e668a4559f97def7c9138"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/2495387841a3eb03ac62b2c984ccd2574303285b",
-                "reference": "2495387841a3eb03ac62b2c984ccd2574303285b",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/33101c83b75728651b9e668a4559f97def7c9138",
+                "reference": "33101c83b75728651b9e668a4559f97def7c9138",
                 "shasum": ""
             },
             "require": {
@@ -2875,7 +2921,7 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v2.4.2"
+                "source": "https://github.com/livewire/livewire/tree/v2.4.4"
             },
             "funding": [
                 {
@@ -2883,7 +2929,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-04-04T15:46:50+00:00"
+            "time": "2021-04-28T15:31:15+00:00"
         },
         {
             "name": "monolog/monolog",

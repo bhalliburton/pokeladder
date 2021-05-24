@@ -26,6 +26,16 @@ class User extends \Wave\User
         'trial_ends_at'
     ];
 
+    public function player()
+    {
+        return $this->hasOne(Player::class);
+    }
+
+    public function matches()
+    {
+        return $this->hasMany(Match::class);
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *

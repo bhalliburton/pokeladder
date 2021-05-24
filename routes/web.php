@@ -18,7 +18,26 @@ Auth::routes();
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
+	Route::get('conflictingmatches', 'ConflictingMatches@index')->name('conflictingmatches');
 });
 
 // Include Wave Routes
 Wave::routes();
+
+Route::get('leaderboard', 'LeaderBoard@index')->name('leaderboard')->middleware('wave');
+
+Route::get('history', 'RecentGames@index')->name('history')->middleware('wave');
+
+Route::get('startgame/{format}/{bo}', 'StartGame@index')->name('startgame')->middleware('wave');
+
+Route::get('viewgame', 'StartGame@view')->name('viewgame')->middleware('wave');
+
+Route::get('cancelgame', 'CancelGame@index')->name('cancelgame')->middleware('wave');
+
+Route::get('acceptgame', 'AcceptGame@index')->name('acceptgame')->middleware('wave');
+
+Route::get('refusegame', 'RefuseGame@index')->name('refusegame')->middleware('wave');
+
+Route::get('wongame/{state}', 'WonGame@index')->name('wongame')->middleware('wave');
+
+

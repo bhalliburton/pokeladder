@@ -47,6 +47,8 @@
             </div>
         </div>
     </div>
-
+    <div class="col-xs-12 col-md-6 col-lg-4">
+        <a href="{{ route('conflictingmatches') }}">View conflicting matches</a>
+    </div>
 
 </div>

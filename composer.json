@@ -11,6 +11,7 @@
         "php": "^7.3|^8.0",
         "devdojo/app": "0.11.0",
         "devdojo/themes": "0.0.5",
+        "diegobanos/php-glicko2": "^1.4",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -62,7 +63,8 @@
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover"
+            "@php artisan package:discover --ansi",
+            "@php artisan vendor:publish --force --tag=livewire:assets --ansi"
         ]
     },
     "config": {
