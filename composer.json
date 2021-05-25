@@ -9,6 +9,7 @@
     "type": "project",
     "require": {
         "php": "^7.3|^8.0",
+        "deployer/deployer": "^7.0",
         "devdojo/app": "0.11.0",
         "devdojo/themes": "0.0.5",
         "diegobanos/php-glicko2": "^1.4",
@@ -77,5 +78,7 @@
             "type": "composer",
             "url": "https://larapack.io"
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

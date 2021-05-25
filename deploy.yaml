@@ -1,0 +1,36 @@
+import: 
+    - recipe/laravel.php
+    - contrib/php-fpm.php
+    - contrib/npm.php
+
+config:
+  application: 'pokeladder'
+  repository: 'https://github.com/bhalliburton/pokeladder.git'
+  php_fpm_version: '8.0'
+
+hosts:
+  prod:
+    remote_user: cogmap.com@s9586.gridserver.com
+    deploy_path: '~/domains/unformer.com'
+
+tasks:
+  deploy:
+      - deploy:prepare
+      - deploy:vendors
+      - artisan:storage:link
+      - artisan:view:cache
+      - artisan:config:cache
+      - artisan:down
+      - artisan:migrate
+      - artisan:up
+      - npm:install
+      - build
+      - deploy:publish
+      - 'mv public html'
+      - php-fpm:reload
+  build:
+    script:
+      - 'cd {{release_path}} && npm run prod'
+
+after:
+  deploy:failed: deploy:unlock
