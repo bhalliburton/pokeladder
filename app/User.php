@@ -31,11 +31,6 @@ class User extends \Wave\User
         return $this->hasOne(Player::class);
     }
 
-    public function matches()
-    {
-        return $this->hasMany(Match::class);
-    }
-
     /**
      * The attributes that should be hidden for arrays.
      *
