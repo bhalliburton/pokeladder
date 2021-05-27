@@ -27,7 +27,6 @@ tasks:
       - npm:install
       - build
       - deploy:publish
-      - mediatemple
       - php-fpm:reload
   build:
     script:
