@@ -12,7 +12,7 @@ hosts:
   prod:
     remote_user: root
     hostname: 167.99.146.164
-    deploy_path: 'var/www/'
+    deploy_path: 'var/www'
 
 tasks:
   deploy:
