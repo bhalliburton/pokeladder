@@ -11,7 +11,7 @@ config:
 hosts:
   prod:
     remote_user: root
-    host: 167.99.146.164
+    hostname: 167.99.146.164
     deploy_path: 'var/www/'
 
 tasks:
