@@ -9,7 +9,7 @@ config:
   php_fpm_version: '8.0'
 
 hosts:
-  s9586.gridserver.com:
+  DO:
     remote_user: root
     host: 167.99.146.164
     deploy_path: 'var/www/'
