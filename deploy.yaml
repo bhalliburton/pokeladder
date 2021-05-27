@@ -10,9 +10,9 @@ config:
 
 hosts:
   s9586.gridserver.com:
-    remote_user: cogmap.com
-    host: s9586.gridserver.com
-    deploy_path: '~/domains/unformer.com'
+    remote_user: root
+    host: 167.99.146.164
+    deploy_path: 'var/www/'
 
 tasks:
   deploy:
