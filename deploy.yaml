@@ -32,10 +32,6 @@ tasks:
   build:
     script:
       - 'cd {{release_path}} && npm run prod'
-  mediatemple:
-    script:
-      - 'mv public html'
-
 
 after:
   deploy:failed: deploy:unlock
