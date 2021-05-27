@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Player;
-use App\Match;
+use App\Game;
 use Illuminate\Support\Facades\Auth;
 
 class StartGame extends Controller
@@ -17,11 +17,11 @@ class StartGame extends Controller
 	    $id = Auth::id();
 	    $player = User::find($id)->player;
     	
-        $match = Match::where('user_id', $id)
+        $game = Game::where('user_id', $id)
                 ->orderBy('created_at','desc')
                 ->first();
 
-        if (is_null($format) && is_null($bo) && $match !== null && $match->accepted == 2 && $match->queue->created_at == $player->last_queued && $player->queued == 0)
+        if (is_null($format) && is_null($bo) && $game !== null && $game->accepted == 2 && $game->queue->created_at == $player->last_queued && $player->queued == 0)
         {
             return view('startgame');
         }

@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
-        Commands\RunMatchmaking::class,
+        Commands\RunGamemaking::class,
     ];
 
     /**
@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-        $schedule->command('queue:matchmaking')->everyMinute();
+        $schedule->command('queue:gamemaking')->everyMinute();
     }
 
     /**

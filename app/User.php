@@ -31,6 +31,11 @@ class User extends \Wave\User
         return $this->hasOne(Player::class);
     }
 
+    public function games()
+    {
+        return $this->hasMany(Game::class);
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *

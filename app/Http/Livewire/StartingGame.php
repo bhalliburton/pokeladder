@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\User;
 use App\Player;
-use App\Match;
+use App\Game;
 use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
 
@@ -26,12 +26,12 @@ class StartingGame extends Component
 
         $this->id = Auth::id();
 
-        $match = Match::where('user_id', $this->id)
+        $game = Game::where('user_id', $this->id)
             ->orderBy('created_at','desc')
             ->first();
 
-        $match->winner_file = $filename;
-        $match->save();
+        $game->winner_file = $filename;
+        $game->save();
 
     }
 
@@ -42,14 +42,14 @@ class StartingGame extends Component
     	$this->id = Auth::id();
 	    $this->player = User::find($this->id)->player;
 
-        $this->match = Match::where('user_id', $this->id)
+        $this->game = Game::where('user_id', $this->id)
                 ->orderBy('created_at','desc')
                 ->first();
 
-        $this->oppmatch = Match::where('match_id', $this->match->match_id)->where('opponent', $this->id)
+        $this->oppgame = Game::where('game_id', $this->game->game_id)->where('opponent', $this->id)
             ->first();
 
-        if($this->player->matched === 0 && $this->player->queued === 0)
+        if($this->player->gamed === 0 && $this->player->queued === 0)
         {
             return <<<'blade'
                 <div>
@@ -59,7 +59,7 @@ class StartingGame extends Component
 
         }
 
-        if ($this->match !== null && $this->match->accepted == 2 && $this->match->queue->created_at == $this->player->last_queued && $this->player->queued == 0) 
+        if ($this->game !== null && $this->game->accepted == 2 && $this->game->queue->created_at == $this->player->last_queued && $this->player->queued == 0) 
         {
             return <<<'blade'
                 <div>
@@ -68,24 +68,24 @@ class StartingGame extends Component
             blade;
         }
 
-        if($this->match->reported_winner > 0 && is_null($this->oppmatch->reported_winner)) 
+        if($this->game->reported_winner > 0 && is_null($this->oppgame->reported_winner)) 
         {
             return <<<'blade'
                 <div>
-                Your opponent has not reported a winner. If they don't report a winner in ten minutes, this match will be closed with the winner you selected.
+                Your opponent has not reported a winner. If they don't report a winner in ten minutes, this round will be closed with the winner you selected.
                 </div>
             blade;
 
         }
 
 
-	    if($this->player->matched === 0) 
+	    if($this->player->gamed === 0) 
         {
             $this->time = strtotime($this->player->last_queued);
             $this->showtime = date('G:i:s', (time() - $this->time));
         } else {
-            $this->opp = User::find($this->match->opponent)->player;
-            $this->oppmatch = Match::where('user_id', $this->match->opponent)
+            $this->opp = User::find($this->game->opponent)->player;
+            $this->oppgame = Game::where('user_id', $this->game->opponent)
                 ->where('opponent', $this->id)
                 ->where('queue_format', $this->player->queue_format)
                 ->where('queue_Bo', $this->player->queue_Bo)
@@ -98,7 +98,7 @@ class StartingGame extends Component
 
 return <<<'blade'
 <div>
-@if ($this->player->matched === 0)
+@if ($this->player->gamed === 0)
     <div wire:poll.1000ms>
     <h2 class="mt-6 text-3xl font-extrabold text-gray-900">Time in queue: {{ $this->showtime }}</h2>
     @if ($this->player->queue_format === 0)
@@ -124,7 +124,7 @@ return <<<'blade'
     </div>
 @else
     <div>
-    <h1 class="mt-6 text-3xl font-extrabold text-gray-900">You Matched!</h1>
+    <h1 class="mt-6 text-3xl font-extrabold text-gray-900">You have a game!</h1>
     <h2 class="mt-6 text-2xl font-extrabold text-gray-900">{{ $this->player->ptcgo_name}} vs. {{ $this->opp->ptcgo_name }} </h2>
     <h3 class="mt-6 text-2xl font-extrabold text-gray-900">Format: 
         @if ($this->player->queue_format === 0) 
@@ -139,7 +139,7 @@ return <<<'blade'
         @endif
         </h3>
 
-    @if ($this->oppmatch->accepted === 1 && $this->match->accepted === 1)
+    @if ($this->oppgame->accepted === 1 && $this->game->accepted === 1)
         <div>
         <h2 class="mt-6 text-3xl font-extrabold text-gray-900">It's time to play!</h2>
         <p class="mt-6 text-xl font-extrabold text-gray-900">Send {{ $this->opp->ptcgo_name }} a friend request on PTCGO and/or accept a friend request from them if they send you one first.</p>
@@ -157,13 +157,13 @@ return <<<'blade'
         <p>
             <span class="inline-flex mt-5 rounded-md shadow-sm">
                 <a href="{{ route('wongame', 1) }}" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50">
-                I won the match.
+                I won the round.
                 </a>
             </span>
 
             <span class="inline-flex mt-5 rounded-md shadow-sm">
                 <a href="{{ route('wongame', 0) }}" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50">
-                I lost the match.
+                I lost the round.
                 </a>
             </span>
         </p>
@@ -174,13 +174,13 @@ return <<<'blade'
         </div>
 
     @else
-        @if ($this->oppmatch->accepted === 1)
+        @if ($this->oppgame->accepted === 1)
             <div>
             <h3 class="mt-6 text-2xl font-extrabold text-gray-900">Your opponent has accepted and is ready to play!</h3>
             </div>
         @endif
 
-        @if ($this->match->accepted === 1)
+        @if ($this->game->accepted === 1)
             <p>
             <h3 class="mt-6 text-4xl font-extrabold text-gray-900">You have accepted the challenge. Waiting for your opponent!</h3>
             </p>

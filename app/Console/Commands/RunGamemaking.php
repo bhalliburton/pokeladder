@@ -4,11 +4,11 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\User;
-use App\Match;
+use App\Game;
 use App\Player;
 use Illuminate\Support\Facades\Auth;
 
-class RunMatchmaking extends Command
+class RunGamemaking extends Command
 {
     /**
     queue theory
@@ -16,21 +16,21 @@ class RunMatchmaking extends Command
     - rating-rating = Some small number
     - 180-seconds that have elapsed since queue = some small number
     - Number of games they have played - number of games played = Some small number
-    - <400 = match
+    - <400 = game
     */
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'queue:matchmaking';
+    protected $signature = 'queue:gamemaking';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Run the matchmaking queue!';
+    protected $description = 'Run the gamemaking queue!';
 
     /**
      * Create a new command instance.
@@ -44,52 +44,52 @@ class RunMatchmaking extends Command
 
     private function resolveold()
     {
-        $matches = Match::where('reported_winner', null)->where('winner', null)->where('accepted', 1)->get();
+        $games = Game::where('reported_winner', null)->where('winner', null)->where('accepted', 1)->get();
 
-        foreach($matches as $match) 
+        foreach($games as $game) 
         {
             // Check if the inverse has a reported_winner and if the updated_date is > 10m
 
-            $oppmatch = Match::where('match_id', $match->match_id)->where('opponent', $match->user_id)->first();
+            $oppgame = Game::where('game_id', $game->game_id)->where('opponent', $game->user_id)->first();
 
-            if($oppmatch->reported_winner > 0 && abs(strtotime(now())-strtotime($oppmatch->updated_at)) > 600) 
+            if($oppgame->reported_winner > 0 && abs(strtotime(now())-strtotime($oppgame->updated_at)) > 600) 
             {
                 // Have a function for setting a winner, cleaning up queue, cleaning up ratings.
-                $thatmatch = Match::find($oppmatch->id);
-                $thatmatch->winner = $oppmatch->reported_winner;
-                $thatmatch->save();
+                $thatgame = Game::find($oppgame->id);
+                $thatgame->winner = $oppgame->reported_winner;
+                $thatgame->save();
 
-                $thismatch = Match::find($match->id);
-                $thismatch->winner = $oppmatch->reported_winner;
-                $thismatch->save();
+                $thisgame = Game::find($game->id);
+                $thisgame->winner = $oppgame->reported_winner;
+                $thisgame->save();
 
-                $player = User::find($match->user_id)->player;
-                $opp = User::find($match->opponent)->player;
+                $player = User::find($game->user_id)->player;
+                $opp = User::find($game->opponent)->player;
 
-                $player->matched = 0;
+                $player->gamed = 0;
                 $player->save();
 
-                $opp->matched = 0;
+                $opp->gamed = 0;
                 $opp->save();
 
-                $update = Match::updateGlicko($match->match_id);
+                $update = Game::updateGlicko($game->game_id);
             }
         }
     }
 
-    private function matchmaking($format, $bo)
+    private function gamemaking($format, $bo)
     {
         $players = \DB::table('players')
             ->select('id', 'user_id', 'rating', 'rating_deviation', 'queued', 'last_queued')
             ->where('queued','>','0')
             ->where('queue_format','=',$format)
             ->where('queue_Bo', "=", $bo)
-            ->where('matched','=','0')
+            ->where('gamed','=','0')
             ->where('banned','=','0')
             ->orderBy('rating', 'desc')
             ->get()->toArray();
 
-        // So we have a list of players - start with 1st player (highest rated) and try to make a match bc theoretically, lowest rated players are easier to match
+        // So we have a list of players - start with 1st player (highest rated) and try to make a game bc theoretically, lowest rated players are easier to game
 
         // Might want to change this to "->inRandomOrder()"
 
@@ -109,8 +109,8 @@ class RunMatchmaking extends Command
                 //Compare player[0] to the next player[$i] to see if they should play
 
                 // See if they played before
-                // 5 most recent matches
-                $priorgames = \DB::table('matches')
+                // 5 most recent games
+                $priorgames = \DB::table('games')
                     ->select('opponent')
                     ->where('user_id', $first->user_id)
                     ->orderBy('created_at', 'desc')
@@ -131,16 +131,16 @@ class RunMatchmaking extends Command
 
                 $score -= abs(strtotime(now())-strtotime($player->last_queued));
 
-                //If we have a match, note it in the match table and update the players table
+                //If we have a game, note it in the game table and update the players table
                 if($score <= 200) // 200 is a random number.
                 {
 
-                    $match = mt_rand();
+                    $game = mt_rand();
 
-                    \DB::table('matches')->insert([
+                    \DB::table('games')->insert([
                         'user_id' => $first->id,
                         'opponent' => $player->id,
-                        'match_id' => $match,
+                        'game_id' => $game,
                         'queue_id' => $first->queued,
                         'queue_format' => $format,
                         'queue_Bo' => $bo,
@@ -152,10 +152,10 @@ class RunMatchmaking extends Command
                         'updated_at' => now()
                     ]);
 
-                    \DB::table('matches')->insert([
+                    \DB::table('games')->insert([
                         'user_id' => $player->id,
                         'opponent' => $first->id,
-                        'match_id' => $match,
+                        'game_id' => $game,
                         'queue_id' => $player->queued,
                         'queue_format' => $format,
                         'queue_Bo' => $bo,
@@ -170,14 +170,14 @@ class RunMatchmaking extends Command
 
                     $opponent = \DB::table('players')
                         ->where('id', $player->id)
-                        ->update(['matched' => 1, 'queued' => 0]);
-                    $matched = \DB::table('players')
+                        ->update(['gamed' => 1, 'queued' => 0]);
+                    $gamed = \DB::table('players')
                         ->where('id', $first->id)
-                        ->update(['matched' => 1, 'queued' => 0]);
+                        ->update(['gamed' => 1, 'queued' => 0]);
 
-                    //if we have a match or don't have a match, remove that player from the queue
-                    // and remove the player they are matched against from the queue
-                    //(remove the player they matched against first to maintain array numbering)
+                    //if we have a game or don't have a game, remove that player from the queue
+                    // and remove the player they are gamed against from the queue
+                    //(remove the player they gamed against first to maintain array numbering)
 
                     unset($players[$key]);
                     break;
@@ -199,10 +199,10 @@ class RunMatchmaking extends Command
      */
     public function handle()
     {
-        self::matchmaking(0,1); // run matchmaking for standard, Bo1
-        self::matchmaking(1,1); // run matchmaking for expanded, Bo1
-        self::matchmaking(0,3); // run matchmaking for standard, Bo3
-        self::matchmaking(1,3); // run matchmaking for expanded, Bo3
+        self::gamemaking(0,1); // run gamemaking for standard, Bo1
+        self::gamemaking(1,1); // run gamemaking for expanded, Bo1
+        self::gamemaking(0,3); // run gamemaking for standard, Bo3
+        self::gamemaking(1,3); // run gamemaking for expanded, Bo3
         self::resolveold();// Resolve over 10 minutes
         return 0;
     }

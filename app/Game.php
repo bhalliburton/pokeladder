@@ -11,7 +11,7 @@ use App\Player;
 use App\Queue;
 
 
-class Match extends Model
+class Game extends Model
 {
     use HasFactory;
 
@@ -29,22 +29,22 @@ class Match extends Model
 
     }
 
-    public static function updateGlicko($match_id)
+    public static function updateGlicko($game_id)
     {
-        $match = Match::where('match_id', $match_id)->first();
-        $oppmatch = Match::where('match_id', $match_id)
-            ->where('opponent', $match->user_id)->first();
-        if($match->winner > 0 && $oppmatch->winner > 0) 
+        $game = Game::where('game_id', $game_id)->first();
+        $oppgame = Game::where('game_id', $game_id)
+            ->where('opponent', $game->user_id)->first();
+        if($game->winner > 0 && $oppgame->winner > 0) 
         {
             // we have winners for both, we can update!
 
-            if($match->winner == $match->user_id) 
+            if($game->winner == $game->user_id) 
             {
-                $winningid = $match->user_id;
-                $losingid = $match->opponent;
+                $winningid = $game->user_id;
+                $losingid = $game->opponent;
             } else {
-                $losingid = $match->user_id;
-                $winningid = $match->opponent;                
+                $losingid = $game->user_id;
+                $winningid = $game->opponent;                
             }
 
             $winning = Player::where('user_id', $winningid)

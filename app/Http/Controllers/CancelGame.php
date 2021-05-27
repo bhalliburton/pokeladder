@@ -15,7 +15,7 @@ class CancelGame extends Controller
     	$id = Auth::id();
 	    $player = User::find($id)->player;
 	    $player->queued = 0;
-	    $player->matched = 0;
+	    $player->gamed = 0;
 	    $player->save();
 
 	    return redirect('/dashboard');

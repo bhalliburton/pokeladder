@@ -26,7 +26,7 @@ class CreatePlayersTable extends Migration
             $table->timestamp('last_queued')->nullable();
             $table->integer('queue_format');
             $table->integer('queue_Bo');
-            $table->boolean('matched');
+            $table->boolean('gamed');
             $table->boolean('banned');
             $table->string('banned_comment')->nullable();
             $table->timestamps();

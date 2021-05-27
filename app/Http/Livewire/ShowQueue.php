@@ -17,7 +17,7 @@ class ShowQueue extends Component
             ->where('queued', '>', '0')
             ->where('queue_format', $format)
             ->where('queue_Bo', $bo)
-            ->where('matched', '0')
+            ->where('gamed', '0')
             ->where('banned', '0')
             ->get()->toArray();
 
@@ -43,7 +43,7 @@ class ShowQueue extends Component
         $id = Auth::id();
         $player = User::find($id)->player;
 
-        if($player->queued > 0 || $player->matched > 0)
+        if($player->queued > 0 || $player->gamed > 0)
         {
             return <<<'blade'
                         <span class="inline-flex mt-5 rounded-md shadow-sm">

@@ -18,7 +18,7 @@ Auth::routes();
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
-	Route::get('conflictingmatches', 'ConflictingMatches@index')->name('conflictingmatches');
+	Route::get('conflictinggames', 'ConflictingGames@index')->name('conflictinggames');
 });
 
 // Include Wave Routes
