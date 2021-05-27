@@ -21,16 +21,14 @@ tasks:
       - artisan:storage:link
       - artisan:view:cache
       - artisan:config:cache
-      - artisan:down
       - artisan:migrate
-      - artisan:up
       - npm:install
       - build
       - deploy:publish
       - php-fpm:reload
   build:
     script:
-      - 'cd {{release_path}} && npm run prod'
+      - 'cd {{release_path}}/resources/views/themes/tailwind && npm install'
 
 after:
   deploy:failed: deploy:unlock
