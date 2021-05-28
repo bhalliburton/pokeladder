@@ -22,7 +22,7 @@ class Player extends Model
         'queued' => 0,
         'queue_format' => 0,
         'queue_Bo' => 0,
-        'matched' => 0,
+        'gamed' => 0,
         'banned' => 0,
         'banned_comment' => ""
     ];
