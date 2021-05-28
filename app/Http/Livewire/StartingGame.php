@@ -100,9 +100,8 @@ class StartingGame extends Component
         else { $this->games = "You will play up to three games. The first person to win two games will be the winner. You will record the final outcome here."; }
 
 return <<<'blade'
-<div>
+<div wire:poll.1000ms>
 @if ($this->player->gamed === 0)
-    <div wire:poll.1000ms>
     <h2 class="mt-6 text-3xl font-extrabold text-gray-900">Time in queue: {{ $this->showtime }}</h2>
     @if ($this->player->queue_format === 0)
         <p><h2 class="mt-6 text-3xl font-extrabold text-gray-900">You are waiting for a standard format game.</h2></p>
@@ -124,9 +123,7 @@ return <<<'blade'
             </a>
         </span>
         </p>
-    </div>
 @else
-    <div>
     <h1 class="mt-6 text-3xl font-extrabold text-gray-900">You have a game!</h1>
     <h2 class="mt-6 text-2xl font-extrabold text-gray-900">{{ $this->player->ptcgo_name}} vs. {{ $this->opp->ptcgo_name }} </h2>
     <h3 class="mt-6 text-2xl font-extrabold text-gray-900">Format: 
