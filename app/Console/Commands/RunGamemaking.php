@@ -51,7 +51,7 @@ class RunGamemaking extends Command
             // Check if the inverse has a reported_winner and if the updated_date is > 10m
             $oppgame = Game::where('game_id', $game->game_id)->where('opponent', $game->user_id)->first();
 
-            if($oppgame->reported_winner > 0 && abs(strtotime(now())-strtotime($oppgame->updated_at)) > 60) 
+            if($oppgame->reported_winner > 0 && abs(strtotime(now())-strtotime($oppgame->updated_at)) > 600) 
             {
                 // Have a function for setting a winner, cleaning up queue, cleaning up ratings.
                 $thatgame = Game::find($oppgame->id);
