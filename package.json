@@ -1,0 +1,22 @@
+{
+  "name": "pokeladder",
+  "version": "1.0.0",
+  "description": "<p align=\"center\"><a href=\"https://devdojo.com/wave\" target=\"_blank\"><img src=\"https://cdn.devdojo.com/assets/img/github-wave-logo.svg\" width=\"240\"></a></p>",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bhalliburton/pokeladder.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bhalliburton/pokeladder/issues"
+  },
+  "homepage": "https://github.com/bhalliburton/pokeladder#readme"
+}
