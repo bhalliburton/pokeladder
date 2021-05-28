@@ -78,7 +78,7 @@ class RunGamemaking extends Command
 
     private function gamemaking($format, $bo)
     {
-$this->info('here');
+
         $players = \DB::table('players')
             ->select('id', 'user_id', 'rating', 'rating_deviation', 'queued', 'last_queued')
             ->where('queued','>','0')
@@ -88,7 +88,7 @@ $this->info('here');
             ->where('banned','=','0')
             ->orderBy('rating', 'desc')
             ->get()->toArray();
-$this->info('here');
+
         // So we have a list of players - start with 1st player (highest rated) and try to make a game bc theoretically, lowest rated players are easier to game
 
         // Might want to change this to "->inRandomOrder()"
@@ -100,13 +100,12 @@ $this->info('here');
         {
             //start on the 0th player, check them vs. other players
             
-$this->info('here');
             $first = array_shift($players);
 
             foreach($players as $key => $player)
             {
                 $score = 0;
-$this->info('here');
+
                 //Compare player[0] to the next player[$i] to see if they should play
 
                 // See if they played before
@@ -117,7 +116,7 @@ $this->info('here');
                     ->orderBy('created_at', 'desc')
                     ->limit(5)
                     ->get()->toArray();
-$this->info('here');
+
                 if(in_array(array(['opponent'],$player->user_id), $priorgames)) $score += 300;
 
 
@@ -137,11 +136,10 @@ $this->info('here');
                 {
 
                     $game = mt_rand();
-$this->info('here');
 
                     \DB::table('games')->insert([
-                        'user_id' => $first->id,
-                        'opponent' => $player->id,
+                        'user_id' => $first->user_id,
+                        'opponent' => $player->user_id,
                         'game_id' => $game,
                         'queue_id' => $first->queued,
                         'queue_format' => $format,
@@ -153,10 +151,9 @@ $this->info('here');
                         'created_at' => now(),
                         'updated_at' => now()
                     ]);
-$this->info('here');
                     \DB::table('games')->insert([
-                        'user_id' => $player->id,
-                        'opponent' => $first->id,
+                        'user_id' => $player->user_id,
+                        'opponent' => $first->user_id,
                         'game_id' => $game,
                         'queue_id' => $player->queued,
                         'queue_format' => $format,
@@ -169,7 +166,6 @@ $this->info('here');
                         'updated_at' => now()
 
                     ]);
-$this->info('here');
 
                     $opponent = \DB::table('players')
                         ->where('id', $player->id)
