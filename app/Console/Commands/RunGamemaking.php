@@ -49,7 +49,6 @@ class RunGamemaking extends Command
         foreach($games as $game) 
         {
             // Check if the inverse has a reported_winner and if the updated_date is > 10m
-
             $oppgame = Game::where('game_id', $game->game_id)->where('opponent', $game->user_id)->first();
 
             if($oppgame->reported_winner > 0 && abs(strtotime(now())-strtotime($oppgame->updated_at)) > 600) 
@@ -79,6 +78,7 @@ class RunGamemaking extends Command
 
     private function gamemaking($format, $bo)
     {
+$this->info('here');
         $players = \DB::table('players')
             ->select('id', 'user_id', 'rating', 'rating_deviation', 'queued', 'last_queued')
             ->where('queued','>','0')
@@ -88,7 +88,7 @@ class RunGamemaking extends Command
             ->where('banned','=','0')
             ->orderBy('rating', 'desc')
             ->get()->toArray();
-
+$this->info('here');
         // So we have a list of players - start with 1st player (highest rated) and try to make a game bc theoretically, lowest rated players are easier to game
 
         // Might want to change this to "->inRandomOrder()"
@@ -100,12 +100,13 @@ class RunGamemaking extends Command
         {
             //start on the 0th player, check them vs. other players
             
+$this->info('here');
             $first = array_shift($players);
 
             foreach($players as $key => $player)
             {
                 $score = 0;
-
+$this->info('here');
                 //Compare player[0] to the next player[$i] to see if they should play
 
                 // See if they played before
@@ -116,7 +117,7 @@ class RunGamemaking extends Command
                     ->orderBy('created_at', 'desc')
                     ->limit(5)
                     ->get()->toArray();
-
+$this->info('here');
                 if(in_array(array(['opponent'],$player->user_id), $priorgames)) $score += 300;
 
 
@@ -136,6 +137,7 @@ class RunGamemaking extends Command
                 {
 
                     $game = mt_rand();
+$this->info('here');
 
                     \DB::table('games')->insert([
                         'user_id' => $first->id,
@@ -151,7 +153,7 @@ class RunGamemaking extends Command
                         'created_at' => now(),
                         'updated_at' => now()
                     ]);
-
+$this->info('here');
                     \DB::table('games')->insert([
                         'user_id' => $player->id,
                         'opponent' => $first->id,
@@ -167,6 +169,7 @@ class RunGamemaking extends Command
                         'updated_at' => now()
 
                     ]);
+$this->info('here');
 
                     $opponent = \DB::table('players')
                         ->where('id', $player->id)
