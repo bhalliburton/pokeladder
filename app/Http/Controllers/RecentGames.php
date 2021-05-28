@@ -24,7 +24,7 @@ class RecentGames extends Controller
 	    	$athing[$i][0] = $game->user->username;
 	    	$athing[$i][1] = $game->created_at;
 	    	$athing[$i][2] = $game->opp->username;
-	    	if($game->queue_format = 0) {
+	    	if($game->queue_format == 0) {
 	    		$thing = "Standard Format";
 	    	} else {
 	    		$thing = "Expanded Format";
