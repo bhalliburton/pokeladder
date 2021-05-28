@@ -24,7 +24,7 @@ class WonGame extends Controller
             ->orderBy('created_at','desc')
             ->first();
 
-		$this->oppgame = Game::where('game_id', $this->match->match_id)
+		$this->oppgame = Game::where('game_id', $this->game->game_id)
             ->where('opponent', $this->id)
             ->first();
 
