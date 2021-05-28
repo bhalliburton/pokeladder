@@ -52,16 +52,6 @@ class StartingGame extends Component
             ->first();
         }
 
-        if($this->player->gamed === 0 && $this->player->queued === 0)
-        {
-            return <<<'blade'
-                <div>
-                Go to the dashboard and start a game!
-                </div>
-            blade;
-
-        }
-
         if ($this->game !== null && $this->game->accepted == 2 && $this->game->queue->created_at == $this->player->last_queued && $this->player->queued == 0) 
         {
             return <<<'blade'
@@ -76,6 +66,16 @@ class StartingGame extends Component
             return <<<'blade'
                 <div>
                 Your opponent has not reported a winner. If they don't report a winner in ten minutes, this round will be closed with the winner you selected.
+                </div>
+            blade;
+
+        }
+
+        if($this->player->gamed === 0 && $this->player->queued === 0)
+        {
+            return <<<'blade'
+                <div>
+                Go to the dashboard and start a game!
                 </div>
             blade;
 
