@@ -46,7 +46,7 @@ class StartingGame extends Component
                 ->orderBy('created_at','desc')
                 ->first();
 
-        if($this->game->game_id > 0) 
+        if(!is_null($this->game)) 
         {
             $this->oppgame = Game::where('game_id', $this->game->game_id)->where('opponent', $this->id)
             ->first();
@@ -71,7 +71,7 @@ class StartingGame extends Component
             blade;
         }
 
-        if($this->game->reported_winner > 0 && is_null($this->oppgame->reported_winner)) 
+        if(!is_null($this->game) && is_null($this->oppgame) && !is_null($this->game->reported_winner) && is_null($this->oppgame->reported_winner)) 
         {
             return <<<'blade'
                 <div>
