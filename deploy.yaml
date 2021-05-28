@@ -23,7 +23,6 @@ tasks:
       - artisan:config:cache
       - artisan:migrate
       - npm:install
-      - build
       - deploy:publish
       - php-fpm:reload
   build:

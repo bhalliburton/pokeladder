@@ -19,7 +19,7 @@
 			</thead>
 			<tbody class="bg-white divide-y divide-gray-200">
 
-			@foreach($games as $data)
+			@foreach($athing as $data)
 				<tr>
 					<td class="px-6 py-4 whitespace-nowrap">{{ $data[1] }}</td>
 					<td class="px-6 py-4 whitespace-nowrap">{{ $data[2] }}</td>
