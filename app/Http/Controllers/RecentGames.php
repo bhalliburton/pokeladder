@@ -17,7 +17,7 @@ class RecentGames extends Controller
 
 	    $games = Game::with(['user', 'opp', 'winners'])->where('user_id', $this->id)->where('accepted', '1')->orderBy('created_at','desc')->limit(10)->get();
 
-	    $games = array();
+	    $athing = array();
 	    $i = 0;
 	    // NEED TO SHOW RATINGS, THEY ARE IN THE QUEUE
 	    foreach ($games as $game) {

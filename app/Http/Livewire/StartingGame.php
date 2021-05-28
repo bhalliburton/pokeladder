@@ -46,8 +46,11 @@ class StartingGame extends Component
                 ->orderBy('created_at','desc')
                 ->first();
 
-        $this->oppgame = Game::where('game_id', $this->game->game_id)->where('opponent', $this->id)
+        if($this->game->game_id > 0) 
+        {
+            $this->oppgame = Game::where('game_id', $this->game->game_id)->where('opponent', $this->id)
             ->first();
+        }
 
         if($this->player->gamed === 0 && $this->player->queued === 0)
         {
