@@ -1,12 +1,10 @@
 import: 
     - recipe/laravel.php
-    - contrib/php-fpm.php
     - contrib/npm.php
 
 config:
   application: 'pokeladder'
   repository: 'https://github.com/bhalliburton/pokeladder.git'
-  php_fpm_version: '8.0'
 
 hosts:
   prod:
