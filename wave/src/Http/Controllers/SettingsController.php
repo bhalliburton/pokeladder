@@ -10,7 +10,6 @@ use Validator;
 use Wave\User;
 use Wave\KeyValue;
 use Wave\ApiKey;
-use App\Player
 use TCG\Voyager\Http\Controllers\Controller;
 
 class SettingsController extends Controller
