@@ -125,7 +125,7 @@ return <<<'blade'
         </p>
 @else
     <h1 class="mt-6 text-3xl font-extrabold text-gray-900">You have a game!</h1>
-    <h2 class="mt-6 text-2xl font-extrabold text-gray-900">{{ $this->player->ptcgo_name}} vs. {{ $this->opp->ptcgo_name }} </h2>
+    <h2 class="mt-6 text-2xl font-extrabold text-gray-900">{{ $this->player->user->username}} vs. {{ $this->opp->user->username }} </h2>
     <h3 class="mt-6 text-2xl font-extrabold text-gray-900">Format: 
         @if ($this->player->queue_format === 0) 
             Standard format - 
@@ -142,7 +142,7 @@ return <<<'blade'
     @if ($this->oppgame->accepted === 1 && $this->game->accepted === 1)
         <div>
         <h2 class="mt-6 text-3xl font-extrabold text-gray-900">It's time to play!</h2>
-        <p class="mt-6 text-xl font-extrabold text-gray-900">Send {{ $this->opp->ptcgo_name }} a friend request on PTCGO and/or accept a friend request from them if they send you one first.</p>
+        <p class="mt-6 text-xl font-extrabold text-gray-900">Send {{ $this->opp->user->username }} a friend request on PTCGO and/or accept a friend request from them if they send you one first.</p>
         <p class="mt-6 text-xl font-extrabold text-gray-900">{{ $this->games }}</p>
         <p class="mt-6 text-xl font-extrabold text-gray-900">
         If, at the conclusion of your game, you wish to upload proof of the outcome, please do so before submitting the result:
