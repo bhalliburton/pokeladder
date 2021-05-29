@@ -10,6 +10,7 @@ use Validator;
 use Wave\User;
 use Wave\KeyValue;
 use Wave\ApiKey;
+use App\Player
 use TCG\Voyager\Http\Controllers\Controller;
 
 class SettingsController extends Controller
@@ -59,7 +60,7 @@ class SettingsController extends Controller
 	    			KeyValue::create(['type' => $request->{$type}, 'keyvalue_id' => $authed_user->id, 'keyvalue_type' => 'users', 'key' => $key, 'value' => $value]);
 	    		}
 
-                if($key = "username")
+                if($key == "username")
                 {
                 $player = Player::where('id', $authed_user->id) ->update(['ptcgo_name' => $value]);
                 }
