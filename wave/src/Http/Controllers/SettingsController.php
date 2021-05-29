@@ -58,8 +58,16 @@ class SettingsController extends Controller
 	    		} else {
 	    			KeyValue::create(['type' => $request->{$type}, 'keyvalue_id' => $authed_user->id, 'keyvalue_type' => 'users', 'key' => $key, 'value' => $value]);
 	    		}
+
+                if($key = "username")
+                {
+                $player = Player::where('id', $authed_user->id) ->update(['ptcgo_name' => $value]);
+                }
+
+
 	    	}
     	}
+
 
     	return back()->with(['message' => 'Successfully updated user profile', 'message_type' => 'success']);
     }
