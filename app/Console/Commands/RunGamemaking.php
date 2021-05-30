@@ -42,6 +42,48 @@ class RunGamemaking extends Command
         parent::__construct();
     }
 
+    private function resolveunaccepted()
+    {
+        $games = Game::where('accepted', null)->get();
+        foreach($games as $game)
+        {
+           // Check if the inverse has accepted and if the updated_date is > 3m
+            $oppgame = Game::where('game_id', $game->game_id)->where('opponent', $game->user_id)->first();
+            if($oppgame->accepted == 1 && abs(strtotime(now())-strtotime($oppgame->updated_at)) > 180)
+            {
+                // They waited too long to accept!
+
+                // Make player available for another game
+                $player = User::find($game->user_id)->player;
+                $player->queued = 0;
+                $player->gamed = 0;
+                $player->save();
+
+                // Note that he didn't accept
+                $game = Game::where('user_id', $game->user_id)
+                    ->where('queue_format', $player->queue_format)
+                    ->where('queue_Bo', $player->queue_Bo)
+                    ->orderBy('created_at','desc')
+                    ->first();
+
+                $game->accepted = 0;
+                $game->save();
+
+                // Note in opponent that this guy refused
+                $oppgame->accepted = 2;
+                $oppgame->save();
+
+                // Clear opponent to play in another game
+                $oppplayer = User::find($oppgame->user_id)->player;
+                $oppplayer->queued = 0;
+                $oppplayer->gamed = 0;
+                $oppplayer->save();
+            }
+
+        }
+
+    }
+
     private function resolveold()
     {
         $games = Game::where('reported_winner', null)->where('winner', null)->where('accepted', 1)->get();
@@ -203,6 +245,7 @@ class RunGamemaking extends Command
         self::gamemaking(0,3); // run gamemaking for standard, Bo3
         self::gamemaking(1,3); // run gamemaking for expanded, Bo3
         self::resolveold();// Resolve over 10 minutes
+        self::resolveunaccepted();
         return 0;
     }
 
