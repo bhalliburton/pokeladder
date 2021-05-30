@@ -12,7 +12,7 @@ class ConflictingGames extends Controller
     //
     public function index()
     {
-    	$games = \DB::table('games')->select('user_id', 'opponent', 'accepted', 'reported_winner', 'winner_file', 'created_at', 'game_id')->where('winner', null)->orderBy('created_at','desc')->get()->toArray();
+    	$games = \DB::table('games')->select('user_id', 'opponent', 'accepted', 'reported_winner', 'winner_file', 'created_at', 'game_id')->where('winner', null)->where('accepted', 1)->orderBy('created_at','desc')->get()->toArray();
     	return view('conflictinggames', compact('games'));
     }
 
