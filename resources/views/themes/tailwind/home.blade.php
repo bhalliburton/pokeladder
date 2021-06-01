@@ -48,65 +48,15 @@
                         <p class="pr-5 my-6 text-lg text-gray-600 md:text-center lg:text-left">People asked for a ranked ladder, now there is a ranked ladder.</p>
                     </div>
                     <div class="w-full sm:w-4/5 lg:w-1/2">
-                        <blockquote class="flex flex-row-reverse items-center justify-between w-full col-span-1 p-6 bg-white rounded-lg shadow sm:flex-row">
-                            <div class="flex flex-col pl-5 sm:pr-8">
-                                <div class="relative sm:pl-12">
-                                    <svg class="absolute left-0 hidden w-10 h-10 fill-current sm:block text-wave-500"
-                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125">
-                                        <path
-                                            d="M30.7 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2C12.7 83.1 5 72.6 5 61.5c0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S30.7 31.6 30.7 42zM82.4 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2-11.8 0-19.5-10.5-19.5-21.6 0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S82.4 31.6 82.4 42z" />
-                                    </svg>
-                                    <p class="mt-2 text-base text-gray-600">I would not have won the World Championship without the reps!
-                                    </p>
-                                </div>
-
-                                <h3 class="mt-3 text-base font-medium leading-5 text-gray-800 truncate sm:pl-12">Liam Halliburton <span
-                                        class="mt-1 text-sm leading-5 text-gray-500 truncate">- PokePerson</span></h3>
-                                <p class="mt-1 text-sm leading-5 text-gray-500 truncate"></p>
-                            </div>
-                            <img class="flex-shrink-0 w-24 h-24 bg-gray-300 rounded-full"
-                                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60"
-                                alt="">
+                        <blockquote class="flex flex-row-reverse items-center justify-between w-full col-span-1 p-6 sm:flex-row">
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">This is sick</p>&mdash; Falcon Main #387 (@Pokehead987) <a href="https://twitter.com/Pokehead987/status/1398814086905962496?ref_src=twsrc%5Etfw">May 30, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                         </blockquote>
                         <blockquote
-                            class="flex flex-row-reverse items-center justify-between w-full col-span-1 p-6 my-5 bg-white rounded-lg shadow sm:flex-row">
-                            <div class="flex flex-col pl-5 sm:pr-10">
-                                <div class="relative sm:pl-12">
-                                    <svg class="absolute left-0 hidden w-10 h-10 fill-current sm:block text-wave-500"
-                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125">
-                                        <path
-                                            d="M30.7 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2C12.7 83.1 5 72.6 5 61.5c0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S30.7 31.6 30.7 42zM82.4 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2-11.8 0-19.5-10.5-19.5-21.6 0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S82.4 31.6 82.4 42z" />
-                                    </svg>
-                                    <p class="mt-2 text-base text-gray-600">I was bad, but Unformer made me git gud.</p>
-                                </div>
-                                <h3 class="mt-3 text-base font-medium leading-5 text-gray-800 truncate sm:pl-12">Some Guy <span
-                                        class="mt-1 text-sm leading-5 text-gray-500 truncate">- Big Time Player</span></h3>
-                                <p class="mt-1 text-sm leading-5 text-gray-500 truncate"></p>
-                            </div>
-                            <img class="flex-shrink-0 w-24 h-24 bg-gray-300 rounded-full"
-                                src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&aauto=format&fit=facearea&facepad=4&w=256&h=256&q=60"
-                                alt="">
-                        </blockquote>
+                            class="flex flex-row-reverse items-center justify-between w-full col-span-1 p-6 my-5 sm:flex-row">
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">I played some of <a href="https://twitter.com/bhalliburton?ref_src=twsrc%5Etfw">@bhalliburton</a>&#39;s ranked ladder tonight and it&#39;s a cool idea but we need more of you to use it so I can hit someone besides <a href="https://twitter.com/Gam3rALO?ref_src=twsrc%5Etfw">@Gam3rALO</a> and <a href="https://twitter.com/Vincius01763096?ref_src=twsrc%5Etfw">@Vincius01763096</a>&#39;s brother<br><br>👇bookmark it<a href="https://t.co/clWDNGYjy7">https://t.co/clWDNGYjy7</a></p>&mdash; Kevin Clemente (@Mellow_Magikarp) <a href="https://twitter.com/Mellow_Magikarp/status/1399549589858897923?ref_src=twsrc%5Etfw">June 1, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>                        </blockquote>
                         <blockquote
-                            class="flex flex-row-reverse items-center justify-between w-full col-span-1 p-6 bg-white rounded-lg shadow sm:flex-row">
-                            <div class="flex flex-col pl-5 sm:pr-10">
-                                <div class="relative sm:pl-12">
-                                    <svg class="absolute left-0 hidden w-10 h-10 fill-current sm:block text-wave-500"
-                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125">
-                                        <path
-                                            d="M30.7 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2C12.7 83.1 5 72.6 5 61.5c0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S30.7 31.6 30.7 42zM82.4 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2-11.8 0-19.5-10.5-19.5-21.6 0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S82.4 31.6 82.4 42z" />
-                                    </svg>
-                                    <p class="mt-2 text-base text-gray-600">I listened to the Trashalanche Podcast and now I dominate this ladder!</p>
-                                </div>
-
-                                <h3 class="mt-3 text-base font-medium leading-5 text-gray-800 truncate sm:pl-12">John Smith <span
-                                        class="mt-1 text-sm leading-5 text-gray-500 truncate">- Who became quite good</span></h3>
-                                <p class="mt-1 text-sm leading-5 text-gray-500 truncate"></p>
-                            </div>
-                            <img class="flex-shrink-0 w-24 h-24 bg-gray-300 rounded-full"
-                                src="https://images.unsplash.com/photo-1545167622-3a6ac756afa4?ixlib=rrb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&aauto=format&fit=facearea&facepad=4&w=256&h=256&q=60"
-                                alt="">
-                        </blockquote>
+                            class="flex flex-row-reverse items-center justify-between w-full col-span-1 p-6 sm:flex-row">
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">I&#39;m queing right now! Who is trying to lose to GengaPult!? <a href="https://t.co/IOotyFFw2M">https://t.co/IOotyFFw2M</a></p>&mdash; AzulGG (@Azul_GG) <a href="https://twitter.com/Azul_GG/status/1398823911635177472?ref_src=twsrc%5Etfw">May 30, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>                        </blockquote>
                     </div>
                 </div>
             </div>

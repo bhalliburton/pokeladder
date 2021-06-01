@@ -42,14 +42,30 @@ class ShowQueue extends Component
 
         $id = Auth::id();
         $player = User::find($id)->player;
+        $this->rating = User::find($id)->player->rating;
 
         if($player->queued > 0 || $player->gamed > 0)
         {
             return <<<'blade'
+                <div class="relative flex-1">
+                    <h3 class="text-lg font-medium leading-6 text-gray-700">
+                        This is your PTCGO Dashboard
+                    </h3>
+                    <p class="text-sm leading-5 text-gray-500 mt">
+                        Current rating: {{ $this->rating }}
+                    </p>
+                </div>
+
+            </div>
+            <div class="relative p-5">
+    
+                        <p>
                         <span class="inline-flex mt-5 rounded-md shadow-sm">
                         <a href="{{ route('viewgame') }}" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50">
                         You are already in a game!</a>
                         </span>
+                        </p>
+            </div>
             blade;
 
         } else {
@@ -65,6 +81,19 @@ class ShowQueue extends Component
 
 
         return <<<'blade'
+                <div class="relative flex-1">
+                    <h3 class="text-lg font-medium leading-6 text-gray-700">
+                        This is your PTCGO Dashboard
+                    </h3>
+                    <p class="text-sm leading-5 text-gray-500 mt">
+                        Current rating: {{ $this->rating }}
+                    </p>
+                </div>
+
+            </div>
+            <div class="relative p-5">
+    
+            <p>
             <div wire:poll>
             <table>
                 <tr>
@@ -113,6 +142,8 @@ class ShowQueue extends Component
                     <td class="text-center">{{ $this->fouronethree }}</td>
                 </tr>
             </table>
+            </div>
+            </p>
             </div>
         blade;
         }

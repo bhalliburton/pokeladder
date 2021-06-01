@@ -26,7 +26,7 @@ class CreateGamesTable extends Migration
             $table->integer('queue_format');
             $table->integer('queue_Bo');
             $table->integer('accepted')->nullable();
-            $table->boolean('reported_winner')->nullable();
+            $table->integer('reported_winner')->nullable();
             $table->string('winner_file')->nullable();
             $table->integer('winner')->nullable();
             $table->timestamps();
