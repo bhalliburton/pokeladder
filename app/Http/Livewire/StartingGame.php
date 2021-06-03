@@ -183,7 +183,7 @@ return <<<'blade'
         @if ($this->game->accepted === 1)
             <p>
             <h3 class="mt-6 text-4xl font-extrabold text-gray-900">You have accepted the challenge. Waiting for your opponent!</h3>
-            <h4 class="mt-6 text-2xl font-extrabold text-gray-900">You can still refuse if it isn't working out</h4>
+            <h4 class="mt-6 text-m font-extrabold text-gray-900">You can still refuse if it isn't working out</h4>
             <p>
             <span class="inline-flex mt-5 rounded-md shadow-sm">
                 <a href="{{ route('refusegame') }}" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50">
@@ -194,7 +194,7 @@ return <<<'blade'
 
             </p>
         @else
-            <h4 class="mt-6 text-2xl font-extrabold text-gray-900">Make sure you accept the game! Don't be like Trainer Chip!</h4>
+            <h4 class="mt-6 text-m font-extrabold text-gray-900">Make sure you accept the game! Don't be like Trainer Chip!</h4>
             <p>
             <span class="inline-flex mt-5 rounded-md shadow-sm">
                 <a href="{{ route('acceptgame') }}" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50">
