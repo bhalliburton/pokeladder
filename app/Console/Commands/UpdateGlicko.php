@@ -56,8 +56,9 @@ class UpdateGlicko extends Command
         foreach($players as $player)
         {
             $count = Game::where('user_id', $player->user_id)->where('winner', '>', 0)->count();
-            if($count>3)
-            $this->info($player->user_id . ": " . $count);
+            if($count>2) {
+                $this->info($player->user_id . ": " . $count);
+            }
         }
 
         return 0;
