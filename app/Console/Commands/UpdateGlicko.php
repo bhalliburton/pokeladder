@@ -56,6 +56,10 @@ class UpdateGlicko extends Command
         foreach($players as $player)
         {
             $count = Game::where('user_id', $player->user_id)->where('winner', '>', 0)->count();
+            $playera = User::find($player->user_id)->player;
+            $playera->games = $count;
+            $playera->save();
+
             if($count>2) {
                 $this->info($player->user_id . ": " . $count);
             }

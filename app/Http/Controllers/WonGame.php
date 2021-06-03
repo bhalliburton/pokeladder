@@ -60,10 +60,12 @@ class WonGame extends Controller
 
                 $update = Game::updateGlicko($this->game->game_id);
 
+                $this->player->games++; 
         		$this->player->gamed = 0;
     	       	$this->player->save();
 
         		$this->opp = User::find($this->game->opponent)->player;
+                $this->player->games++;
         		$this->opp->gamed = 0;
     	       	$this->opp->save();
             }

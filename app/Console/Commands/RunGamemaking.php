@@ -107,9 +107,11 @@ class RunGamemaking extends Command
                 $player = User::find($game->user_id)->player;
                 $opp = User::find($game->opponent)->player;
 
+                $player->games++;
                 $player->gamed = 0;
                 $player->save();
 
+                $opp->games++;
                 $opp->gamed = 0;
                 $opp->save();
 
