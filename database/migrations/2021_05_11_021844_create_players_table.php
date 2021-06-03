@@ -27,6 +27,7 @@ class CreatePlayersTable extends Migration
             $table->integer('queue_format');
             $table->integer('queue_Bo');
             $table->boolean('gamed');
+            $table->integer('games')->unsigned()->nullable();
             $table->boolean('banned');
             $table->string('banned_comment')->nullable();
             $table->timestamps();

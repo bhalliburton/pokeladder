@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
         //
         Commands\RunGamemaking::class,
         Commands\DeclareWinner::class,
+        Commands\UpdateGlicko::class,
     ];
 
     /**
