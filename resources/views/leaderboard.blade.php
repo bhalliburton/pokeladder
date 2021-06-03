@@ -6,7 +6,6 @@
 
 	<div class="flex flex-col px-8 mx-auto my-6 lg:flex-row max-w-7xl xl:px-5">
 		<h1 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">The Leaderboard!</h1>
-				<h4 class="text-m font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">(3 Game Minimum)</h1>
 
 		<div class="mt-1 flex flex-col sm:flex-row sm:flex-wrap sm:mt-0 sm:space-x-6">
 		<p>
@@ -30,6 +29,8 @@
 			@endforeach
 			</tbody>
 			</table>
+					<h4 class="text-m leading-7 text-gray-900 sm:truncate">(3 Game Minimum)</h4>
+
 	</p>
 	</div>
 
