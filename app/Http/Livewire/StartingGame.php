@@ -125,7 +125,7 @@ return <<<'blade'
         </p>
 @else
     <h1 class="mt-6 text-3xl font-extrabold text-gray-900">You have a game!</h1>
-    <h2 class="mt-6 text-2xl font-extrabold text-gray-900">{{ $this->player->user->username}} vs. {{ $this->opp->user->username }} </h2>
+    <h2 class="mt-6 text-2xl font-extrabold text-gray-900">{{ $this->player->user->username}} vs. {{ $this->opp->user->username }} ({{ round($this->opp->rating,0) }}&plusmn;{{ round($this->opp->rating_deviation,0) }})</h2>
     <h3 class="mt-6 text-2xl font-extrabold text-gray-900">Format: 
         @if ($this->player->queue_format === 0) 
             Standard format - 
@@ -194,7 +194,7 @@ return <<<'blade'
 
             </p>
         @else
-            <h4 class="mt-6 text-m font-extrabold text-gray-900">Make sure you accept the game! Don't be like Trainer Chip!</h4>
+            <h4 class="mt-6 text-m font-extrabold text-gray-900">Make sure you accept the game!</h4>
             <p>
             <span class="inline-flex mt-5 rounded-md shadow-sm">
                 <a href="{{ route('acceptgame') }}" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50">
