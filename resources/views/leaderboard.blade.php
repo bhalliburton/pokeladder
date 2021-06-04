@@ -23,8 +23,8 @@
 					<td class="px-6 py-4 whitespace-nowrap">
 						{{ $loop->iteration }}
 					</td>
-					<td class="px-6 py-4 whitespace-nowrap">{{ $data->ptcgo_name }}</td>
-					<td class="px-6 py-4 whitespace-nowrap">{{ $data->rating }}</td>
+					<td class="px-6 py-4 whitespace-nowrap"><a href="/history/{{ $data->ptcgo_name }}">{{ $data->ptcgo_name }}</a></td>
+					<td class="px-6 py-4 whitespace-nowrap">{{ round($data->rating,0) }}&plusmn;{{ round($data->rating_deviation,0) }}</td>
 				</tr>
 			@endforeach
 			</tbody>

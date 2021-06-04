@@ -12,6 +12,7 @@
 				<thead class="bg-gray-50">
 				<tr>
 					<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+					<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Player</th>
 					<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Opponent</th>
 					<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Format</th>
 					<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Outcome</th>
@@ -21,10 +22,11 @@
 
 			@foreach($athing as $data)
 				<tr>
-					<td class="px-6 py-4 whitespace-nowrap">{{ $data[1] }}</td>
-					<td class="px-6 py-4 whitespace-nowrap">{{ $data[2] }}</td>
-					<td class="px-6 py-4 whitespace-nowrap">{{ $data[3] }}</td>
-					<td class="px-6 py-4 whitespace-nowrap">{{ $data[4] }}</td>
+					<td class="px-6 py-4 whitespace-nowrap">{{ $data[0] }}</td>
+					<td class="px-6 py-4 whitespace-nowrap">{{ $data[1] }} ({{ round($data[2],0) }}&plusmn;{{ round($data[3],0) }})</td>
+					<td class="px-6 py-4 whitespace-nowrap">{{ $data[4] }} ({{ round($data[5],0) }}&plusmn;{{ round($data[6],0) }})</td>
+					<td class="px-6 py-4 whitespace-nowrap">{{ $data[7] }}</td>
+					<td class="px-6 py-4 whitespace-nowrap">{{ $data[8] }}</td>
 				</tr>
 			@endforeach
 			</tbody>

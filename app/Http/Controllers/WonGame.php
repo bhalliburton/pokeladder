@@ -65,7 +65,7 @@ class WonGame extends Controller
     	       	$this->player->save();
 
         		$this->opp = User::find($this->game->opponent)->player;
-                $this->player->games++;
+                $this->opp->games++;
         		$this->opp->gamed = 0;
     	       	$this->opp->save();
             }

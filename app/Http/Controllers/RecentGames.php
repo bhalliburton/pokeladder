@@ -15,15 +15,19 @@ class RecentGames extends Controller
     	$this->id = Auth::id();
 	    $this->player = User::find($this->id)->player;
 
-	    $games = Game::with(['user', 'opp', 'winners'])->where('user_id', $this->id)->where('accepted', '1')->orderBy('created_at','desc')->limit(10)->get();
+	    $games = Game::with(['user', 'opp', 'winners'])->where('user_id', $this->id)->where('accepted', '1')->orderBy('created_at','desc')->limit(25)->get();
 
 	    $athing = array();
 	    $i = 0;
 	    // NEED TO SHOW RATINGS, THEY ARE IN THE QUEUE
 	    foreach ($games as $game) {
-	    	$athing[$i][0] = $game->user->username;
-	    	$athing[$i][1] = $game->created_at;
-	    	$athing[$i][2] = $game->opp->username;
+	    	$athing[$i][0] = $game->created_at->toCookieString();
+	    	$athing[$i][1] = $game->user->username;
+	    	$athing[$i][2] = $game->rating;
+	    	$athing[$i][3] = $game->rating_deviation;
+	    	$athing[$i][4] = $game->opp->username;
+	    	$athing[$i][5] = $game->opp_rating;
+	    	$athing[$i][6] = $game->opp_rating_deviation;
 	    	if($game->queue_format == 0) {
 	    		$thing = "Standard Format";
 	    	} else {
@@ -34,19 +38,61 @@ class RecentGames extends Controller
 	    	} else {
 	    		$thing .= " Bo3";
 	    	}
-	    	$athing[$i][3] = $thing;
+	    	$athing[$i][7] = $thing;
 	    	if(is_Null($game->winner)) {
 	    		$winner = "Game Ongoing";
 	    	} else {
 	    		$winner = $game->winners->username . " wins";
 	    	}
-	    	$athing[$i][4] = $winner;
+	    	$athing[$i][8] = $winner;
 	    	$i++;
 	    }
 
 
 	    return view('history', compact('athing'));
 	}
+
+	public function player($user)
+	{
+	    $this->user = User::where('username', $user)->first();
+
+	    $games = Game::with(['user', 'opp', 'winners'])->where('user_id', $this->user->id)->where('accepted', '1')->orderBy('created_at','desc')->limit(25)->get();
+
+	    $athing = array();
+	    $i = 0;
+	    // NEED TO SHOW RATINGS, THEY ARE IN THE QUEUE
+	    foreach ($games as $game) {
+	    	$athing[$i][0] = $game->created_at->toCookieString();
+	    	$athing[$i][1] = $game->user->username;
+	    	$athing[$i][2] = $game->rating;
+	    	$athing[$i][3] = $game->rating_deviation;
+	    	$athing[$i][4] = $game->opp->username;
+	    	$athing[$i][5] = $game->opp_rating;
+	    	$athing[$i][6] = $game->opp_rating_deviation;
+	    	if($game->queue_format == 0) {
+	    		$thing = "Standard Format";
+	    	} else {
+	    		$thing = "Expanded Format";
+	    	}
+	    	if($game->queue_Bo = 1) {
+	    		$thing .= " Bo1";
+	    	} else {
+	    		$thing .= " Bo3";
+	    	}
+	    	$athing[$i][7] = $thing;
+	    	if(is_Null($game->winner)) {
+	    		$winner = "Game Ongoing";
+	    	} else {
+	    		$winner = $game->winners->username . " wins";
+	    	}
+	    	$athing[$i][8] = $winner;
+	    	$i++;
+	    }
+
+
+	    return view('history', compact('athing'));
+	}
+
 
 	public function api($user)
 	{

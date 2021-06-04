@@ -28,7 +28,9 @@ Route::get('leaderboard', 'LeaderBoard@index')->name('leaderboard')->middleware(
 
 Route::get('history', 'RecentGames@index')->name('history')->middleware('wave');
 
-Route::get('/history/{username}', 'RecentGames@api');
+Route::get('/history/{username}', 'RecentGames@player');
+
+Route::get('/history/api/{username}', 'RecentGames@api');
 
 Route::get('startgame/{format}/{bo}', 'StartGame@index')->name('startgame')->middleware('wave');
 
