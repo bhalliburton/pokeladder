@@ -43,6 +43,7 @@ class ShowQueue extends Component
         $id = Auth::id();
         $player = User::find($id)->player;
         $this->rating = User::find($id)->player->rating;
+        $this->rating_deviation = User::find($id)->player->rating_deviation;
 
         if($player->queued > 0 || $player->gamed > 0)
         {
@@ -52,7 +53,7 @@ class ShowQueue extends Component
                         This is your PTCGO Dashboard
                     </h3>
                     <p class="text-sm leading-5 text-gray-500 mt">
-                        Current rating: {{ $this->rating }}
+                        Current rating: {{ round($this->rating,0) }}&plusmn;{{ round($this->rating_deviation,0) }}
                     </p>
                 </div>
 
@@ -86,7 +87,7 @@ class ShowQueue extends Component
                         This is your PTCGO Dashboard
                     </h3>
                     <p class="text-sm leading-5 text-gray-500 mt">
-                        Current rating: {{ $this->rating }}
+                        Current rating: {{ round($this->rating,0) }}&plusmn;{{ round($this->rating_deviation,0) }}
                     </p>
                 </div>
 
